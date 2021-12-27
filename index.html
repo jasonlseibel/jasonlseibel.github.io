@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>The best salt in the world</title>
+
+<style>
+  body {
+    background-image: url('images/background.jpg');
+      background-repeat: repeat-x;
+  }
+  input:hover {
+    transform: scale(1.5);
+  }
+  img:hover {
+    transform: scale(1.3);
+  }
+</style>
+
+<script >
+
+var is_right = true
+
+function reset(){
+  clearTimeout(time ) ;
+  document.getElementById('box1').style.left= "600";
+  document.getElementById('box2').style.left= "900";
+  document.getElementById('box3').style.left= "1200";
+}
+
+function boxMove(name){
+  var step=3; // Change this step value
+  // var is_right = true
+  var y=document.getElementById(name).offsetTop;
+  var x=document.getElementById(name).offsetLeft;
+
+  if (is_right){
+    x= x + step;
+    document.getElementById(name).style.left= x + "px";//horizontal move
+    if (x > 1300) is_right = false
+  } else {
+    x= x - step;
+    document.getElementById(name).style.left= x + "px";//horizontal move
+    if (x < 600) is_right = true
+  }
+}
+
+function timer(){
+  boxMove("box1");
+  boxMove("box2");
+  boxMove("box3");
+  time = setTimeout('timer()', 10);
+}
+
+</script>
+</head>
+<body >
+  <input class="sun" type="image" src="images/sun.png" onClick=timer() value='Begin' style="
+    position: absolute;
+    left: 100px;
+    top: 150px;
+    width: 500px">
+
+  <img src=images/salt.png id='box1' 
+  style="position:absolute; left: 600; top: 400;">
+  <img src=images/salt.png id='box2' 
+  style="position:absolute; left: 900; top: 400;">
+  <img src=images/salt.png id='box3' 
+  style="position:absolute; left: 1200; top: 400;">
+
+  <input type=button onClick=reset() value='Reset'>
+</body>
+</html>
